@@ -15,7 +15,7 @@ La sintaxis sigue un orden jerárquico estricto que el motor de la base de datos
 ```sql
 SELECT [DISTINCT] columna1, columna2 -- Proyección
 FROM tabla -- Origen
-WHERE condicion -- Filtrado
+WHERE condición -- Filtrado
 ```
 
 - **SELECT:** Define las columnas de donde obtendremos los datos que queremos ver. El uso de `*` selecciona todas las columnas de una tabla.
@@ -27,3 +27,24 @@ A diferencia del orden de escritura, el motor procesa las consultas en el siguie
 1. `FROM`
 2. `WHERE`
 3. `SELECT`
+
+## MySQL
+
+**Objetivo:** obtener los nombres de los productos y sus precios con etiquetas personalizadas. Escenario: Inventario de tienda de tecnología.
+
+**Tabla:**
+
+| id `PRIMARY KEY` | nombre `VARCHAR(200)` | precio `DECIMAL(10,2)` | stock `INT` |
+| :--------------: | :-------------------: | :--------------------: | :---------: |
+|        1         |       Laptop HP       |        15999.99        |     25      |
+|        2         |   Mouse Inalámbrico   |         299.50         |     150     |
+|        3         |   Teclado Mecánico    |         1250.0         |     80      |
+
+**Consulta:**
+
+```sql
+SELECT nombre AS articulo, precio AS costo_unitario
+FROM productos
+WHERE precio > 500;
+```
+
