@@ -1,7 +1,5 @@
 # Estructura Básica SQL
 
-## ¿Qué es?
-
 La estructura `SELECT-FROM-WHERE` es el núcleo de las consultas de proyección y filtrado en SQL. Su propósito es permitir al usuario extraer columnas específicas (`SELECT`) de una o varias tablas (`FROM`) que cumplan los criterios lógicos determinados (`WHERE`).
 
 En el contexto de las bases de datos relacionales, la estructura implementa las operaciones de la **Álgebra Relacional** conocidas como *Selección* ([Selection (relational algebra)](https://en.wikipedia.org/wiki/Selection_(relational_algebra))) y *Proyección*. Es la herramienta primaria para transformar grandes volúmenes de datos crudos en información útil y específica para aplicaciones o reportes:
