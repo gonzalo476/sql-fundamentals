@@ -47,6 +47,8 @@ Total Acumulado de Ventas
 | 2025-01-02   | 150.00                |
 | 2025-01-03   | 200.00                |
 
+**Query:**
+
 ```sql
 SELECT
 	fecha,
@@ -67,7 +69,55 @@ FROM ventas_diarias;
 
 ## Ejemplo 2: SQL Server
 
-Promedio Móvil (Últimos 3 día)
+Promedio Móvil (Últimos 3 días)
 
 **Escenario:** Suavizar la volatilidad de precios promediando el precio actual con los dos anteriores.
 
+**Tabla `PreciosHistoricos`:** 
+
+|   fecha    | precio |
+| :--------: | :----: |
+| 2025-01-01 | 100.00 |
+| 2025-01-02 | 110.00 |
+| 2025-01-03 | 105.00 |
+| 2025-01-04 | 120.00 |
+| 2025-01-05 | 115.00 |
+
+**Query:**
+
+```sql
+SELECT 
+    fecha,
+    frecio,
+    AVG(precio) OVER (
+        ORDER BY fecha 
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    ) AS promedio_movil_3_dias
+FROM PreciosHistoricos;
+```
+
+- `ROWS BETWEEN 2 PRECEDING AND CURRENT ROW` define una ventana de exactamente 3 filas (la actual y las 2 anteriores).
+- SQL Server es extremadamente eficiente procesando marcos de ventana gracias a operadores de ejecución específicos como *Window Spool*.
+
+**Resultado:**
+
+|   fecha    | precio | promedio_movil_3_dias |
+| :--------: | :----: | :-------------------: |
+| 2025-01-01 | 100.00 |        100.00         |
+| 2025-01-02 | 110.00 |        105.00         |
+| 2025-01-03 | 105.00 |        105.00         |
+| 2025-01-04 | 120.00 |        111.67         |
+| 2025-01-05 | 115.00 |        113.33         |
+
+## Mejores prácticas
+
+1. **Índices:** Para que `ORDER BY` dentro de `OVER` sea rápido, la columna de ordenamiento debe estar indexada.
+2. **Especificar `ROWS` vs `RANGE`:** `ROWS` es generalmente más rápido que `RANGE` porque cuenta filas físicas y no evalúa valores lógicos.
+3. **Evitar particiones masivas:** Si `PARTITION BY` genera grupos demasiado grandes, el uso de memoria RAM del servidor SQL aumentará drásticamente.
+
+## Errores comunes:
+
+- **Error:** Omitir el `ORDER BY` en un acumulado.
+  - *Efecto:* La función suma todo el set de datos en cada fila, devolviendo el total general en lugar del acumulado.
+- **Error:** Confundir `ROWS` (filas) con `RANGE` (valores).
+  - *Efecto:* Si hay fechas duplicadas, `RANGE` sumará todos los montos de la misma fecha a la vez, mientras que `ROWS` lo hará uno por uno.
