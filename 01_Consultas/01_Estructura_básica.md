@@ -122,3 +122,5 @@ ORDER BY salario DESC;
 ## Mejoras de rendimiento
 
 - **Índices:** El `WHERE` es el lugar donde los índices tienen mayor impacto. Una columna filtrada frecuentemente debe estar indexada.
+- **Plan de ejecución:** En SQL Server, usa `Cntrl+L` para ver si tu `WHERE` está haciendo un *Index Seek* (rápido) o un *Table Scan* (lento).
+- **Funciones en el WHERE:** Evita `WHERE YEAR(fecha) = 2023`. Es mejor `WHERE fecha >= '2023-01-01' AND fecha < '2024-01-01'` para permitir el uso de índices.
