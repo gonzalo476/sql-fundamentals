@@ -30,7 +30,9 @@ A diferencia del orden de escritura, el motor procesa las consultas en el siguie
 
 ## MySQL
 
-**Objetivo:** obtener los nombres de los productos y sus precios con etiquetas personalizadas. Escenario: Inventario de tienda de tecnología.
+**Objetivo:** obtener los nombres de los productos y sus precios con etiquetas personalizadas. 
+
+**Escenario:** Inventario de tienda de tecnología.
 
 **Tabla:**
 
