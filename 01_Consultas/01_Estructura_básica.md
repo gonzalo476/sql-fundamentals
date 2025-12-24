@@ -20,3 +20,12 @@ FROM tabla -- Origen
 WHERE condicion -- Filtrado
 ```
 
+- **SELECT:** Define las columnas de donde obtendremos los datos que queremos ver. El uso de `*` selecciona todas las columnas de una tabla.
+- **FROM:** Especifica la fuente de los datos (tablas o vistas).
+- **WHERE:** Aplica predicados de los datos (`=`, `<>`, `>`, `LIKE`, `IN`, `BETWEEN`).
+
+A diferencia del orden de escritura, el motor procesa las consultas en el siguiente orden:
+
+1. `FROM`
+2. `WHERE`
+3. `SELECT`
