@@ -2,7 +2,7 @@
 
 Realizan cálculos sobre un conjunto de filas que están relacionadas con la fila actual. A diferencia de las funciones de agregado estándar (`GROUP BY`), **las funciones de ventana no colapsan las filas**; cada fila mantiene su identidad individual mientras muestra el resultado del calculo agregado.
 
-Su propósito principal es realizar análisis de series temporales y cálculos estadísticos complejos, como el Total Acumulado (Running Total) o el Promedio Móvil (Moving Average). Son fundamentales en bases de datos relacionales modernas para generar reportes donde se requiere comparar el valor de una fila con una métrica calculada sobre un contexto específico. 
+Su propósito principal es realizar análisis de series temporales y cálculos estadísticos complejos, como el Total Acumulado (Running Total) o el Promedio Móvil (*Moving Average*). Son fundamentales en bases de datos relacionales modernas para generar reportes donde se requiere comparar el valor de una fila con una métrica calculada sobre un contexto específico. 
 
 ## Sintaxis básica
 
