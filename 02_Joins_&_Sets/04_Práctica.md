@@ -259,13 +259,14 @@ LEFT JOIN HR.EMPLOYEES e
 WHERE e.DEPARTMENT_ID IS NULL;
 ```
 
-*Extra:*
+**Extra:**
 
 ```sql
 -- Seleccionar los departamentos con menos de 3 employees (que no sean null)
 SELECT
     d.DEPARTMENT_ID,
-    d.DEPARTMENT_NAME
+    d.DEPARTMENT_NAME,
+    COUNT(e.EMPLOYEE_ID) AS EMPLOYEE_COUNT
 FROM
     HR.DEPARTMENTS d
 INNER JOIN
@@ -273,9 +274,8 @@ INNER JOIN
 GROUP BY
     d.DEPARTMENT_ID,
     d.DEPARTMENT_NAME
-HAVING
-    COUNT(e.EMPLOYEE_ID) < 3
+HAVING -- having filtra grupos / where filtra filas individuales
+    COUNT(e.EMPLOYEE_ID) <= 3
 ORDER BY
     d.DEPARTMENT_NAME;
 ```
-
