@@ -158,40 +158,44 @@ ORDER BY calendar_year, ranking;
 
 ### 🎯 SUBTEMA/VARIANTE
 
-**JOIN múltiple (3 tablas)**
+```
+SUM() OVER (PARTITION BY ...)
+```
 
 ### 📋 Título del Caso
 
-**Empleados, Departamentos y Ubicación**
+**Participación de ventas por producto dentro de su categoría**
 
 ### 🏢 Contexto del Negocio
 
-La empresa desea un reporte que muestre dónde trabajan físicamente los empleados, incluyendo ciudad y país.
+Marketing quiere saber qué porcentaje del total de ventas de una categoría corresponde a cada producto.
 
 ### 🎯 Objetivo
 
-- **Mostrar:** employee_id, full_name, department_name, city, country_name
-- **Incluir:** solo empleados con departamento y ubicación definida
-- **Ordenamiento:** por country_name, city
-- **Formato esperado:** concatenar nombre completo
+- **Mostrar:** prod_category, prod_name, amount_sold
+- **Incluir:** total de ventas por categoría y porcentaje del producto
+- **Ordenamiento:** por categoría y porcentaje descendente
+- **Formato esperado:** porcentaje con alias descriptivo
 
 ### ⚙️ Requisitos Técnicos
 
-- ✅ Usar múltiples INNER JOIN
-- ✅ Concatenar first_name y last_name
-- ✅ Alias consistentes para tablas
+- ✅ Usar `SUM()` como función analítica
+- ✅ Evitar subqueries anidadas innecesarias
+- ✅ Calcular correctamente el porcentaje
 
 ### 📊 Se Evaluará
 
-- ✔️ Capacidad para encadenar joins correctamente
-- ✔️ Uso correcto de claves foráneas
-- ✔️ Legibilidad del SQL
-- ✔️ Comprensión del modelo relacional HR
+- ✔️ Uso correcto de agregados como window functions
+- ✔️ Comprensión de particiones
+- ✔️ Precisión matemática del porcentaje
+- ✔️ Buen uso de alias y formato
 
 ### 🗂️ Tablas Involucradas
 
-`employees`, `departments`, `locations`, `countries`
+```
+SALES, PRODUCTS
+```
 
 ### 💡 Pistas (Opcional)
 
-- 🔍 departments conecta con locations, no employees directamente
+- 🔍 El total por categoría puede calcularse sin agrupar filas
