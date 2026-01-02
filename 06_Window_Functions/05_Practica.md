@@ -154,3 +154,44 @@ ORDER BY calendar_year, ranking;
 
 ```
 
+## 🔷 PROBLEMA 3
+
+### 🎯 SUBTEMA/VARIANTE
+
+**JOIN múltiple (3 tablas)**
+
+### 📋 Título del Caso
+
+**Empleados, Departamentos y Ubicación**
+
+### 🏢 Contexto del Negocio
+
+La empresa desea un reporte que muestre dónde trabajan físicamente los empleados, incluyendo ciudad y país.
+
+### 🎯 Objetivo
+
+- **Mostrar:** employee_id, full_name, department_name, city, country_name
+- **Incluir:** solo empleados con departamento y ubicación definida
+- **Ordenamiento:** por country_name, city
+- **Formato esperado:** concatenar nombre completo
+
+### ⚙️ Requisitos Técnicos
+
+- ✅ Usar múltiples INNER JOIN
+- ✅ Concatenar first_name y last_name
+- ✅ Alias consistentes para tablas
+
+### 📊 Se Evaluará
+
+- ✔️ Capacidad para encadenar joins correctamente
+- ✔️ Uso correcto de claves foráneas
+- ✔️ Legibilidad del SQL
+- ✔️ Comprensión del modelo relacional HR
+
+### 🗂️ Tablas Involucradas
+
+`employees`, `departments`, `locations`, `countries`
+
+### 💡 Pistas (Opcional)
+
+- 🔍 departments conecta con locations, no employees directamente
